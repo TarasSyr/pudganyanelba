@@ -1,0 +1,250 @@
+@keyframes move {
+    100% {
+        transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+}
+
+.navbar {
+    background-color: #1e1e1e;
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #1f0000;
+    overflow: hidden;
+}
+
+.background span {
+    width: 39vmin;
+    height: 39vmin;
+    border-radius: 39vmin;
+    backface-visibility: hidden;
+    position: absolute;
+    animation: move;
+    animation-duration: 38;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+
+.background span:nth-child(0) {
+    color: #5c0000;
+    top: 2%;
+    left: 90%;
+    animation-duration: 79s;
+    animation-delay: -83s;
+    transform-origin: 3vw -3vh;
+    box-shadow: -78vmin 0 9.914063787367974vmin currentColor;
+}
+
+.background span:nth-child(1) {
+    color: #5c0000;
+    top: 77%;
+    left: 5%;
+    animation-duration: 12s;
+    animation-delay: -31s;
+    transform-origin: 18vw 9vh;
+    box-shadow: 78vmin 0 10.443081403113204vmin currentColor;
+}
+
+.background span:nth-child(2) {
+    color: #5c0000;
+    top: 39%;
+    left: 8%;
+    animation-duration: 25s;
+    animation-delay: -19s;
+    transform-origin: 6vw 4vh;
+    box-shadow: 78vmin 0 10.734923833710262vmin currentColor;
+}
+
+.background span:nth-child(3) {
+    color: #5c0000;
+    top: 99%;
+    left: 31%;
+    animation-duration: 69s;
+    animation-delay: -60s;
+    transform-origin: 23vw -10vh;
+    box-shadow: 78vmin 0 9.76564392176708vmin currentColor;
+}
+
+.background span:nth-child(4) {
+    color: #370101;
+    top: 47%;
+    left: 16%;
+    animation-duration: 18s;
+    animation-delay: -43s;
+    transform-origin: -14vw 10vh;
+    box-shadow: 78vmin 0 10.014964443492842vmin currentColor;
+}
+
+.background span:nth-child(5) {
+    color: #5c0000;
+    top: 52%;
+    left: 3%;
+    animation-duration: 31s;
+    animation-delay: -76s;
+    transform-origin: 22vw -4vh;
+    box-shadow: 78vmin 0 9.774326742265046vmin currentColor;
+}
+
+.background span:nth-child(6) {
+    color: #370101;
+    top: 27%;
+    left: 99%;
+    animation-duration: 52s;
+    animation-delay: -69s;
+    transform-origin: 24vw -17vh;
+    box-shadow: -78vmin 0 10.185956805459336vmin currentColor;
+}
+
+.background span:nth-child(7) {
+    color: #5c0000;
+    top: 53%;
+    left: 54%;
+    animation-duration: 21s;
+    animation-delay: -106s;
+    transform-origin: -11vw -19vh;
+    box-shadow: -78vmin 0 10.373033974230564vmin currentColor;
+}
+
+.background span:nth-child(8) {
+    color: #5c0000;
+    top: 9%;
+    left: 70%;
+    animation-duration: 66s;
+    animation-delay: -10s;
+    transform-origin: -11vw -2vh;
+    box-shadow: -78vmin 0 9.786330288834954vmin currentColor;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 4s;
+    animation-name: fade;
+    animation-duration: 4s;
+    transform: translateX(0);
+}
+
+@-webkit-keyframes fade {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    from {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .text {
+        font-size: 11px
+    }
+}
+
+@keyframes opacity-card {
+    0% {
+        opacity: 0.0;
+
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.opacity-card {
+    animation: opacity-card 0.5s ease-out;
+}
+
+footer {
+    background-color: #33333341;
+    opacity: 1;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.team-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.divider {
+    width: 50px;
+    height: 3px;
+    background-color: #fff;
+    margin: 10px auto;
+}
+
+.hero-card {
+    display: flex;
+    align-items: center;
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 50%;
+}
+
+.hero-description {
+    flex: 1;
+    padding: 20px;
+    text-align: justify;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+.backimage {
+    opacity: 1;
+    transition: 0.5s ease-out;
+}
+
+.backimage:hover {
+    opacity: 0.4;
+}

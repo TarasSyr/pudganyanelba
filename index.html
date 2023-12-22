@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Кастомка Dota 2</title>
+
+    <!-- Підключення Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="animated_background.css">
+
+    <!-- Підключення власного CSS для темних кольорів -->
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .navbar {
+            background: rgba(30, 30, 30, 0.4);
+            /* Прозорість */
+            backdrop-filter: blur(10px);
+            /* Розмиття фону */
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(30, 30, 30, 0.8);
+            /* Новий колір фону при наведенні */
+        }
+
+        .navbar-dark .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+
+        .card {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .card::before,
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            /* Ширина розмиття боків */
+            background: inherit;
+            filter: blur(10px);
+        }
+
+        .card::before {
+            left: 0;
+        }
+
+        .card::after {
+            right: 0;
+        }
+
+        .card h1 {
+            text-align: center;
+            color: crimson;
+        }
+
+        .slideshow-container {
+            position: relative;
+            margin: auto;
+        }
+    </style>
+
+
+    <script>
+        var slideIndex = 0;
+
+        function showstat(dict) {
+            spcreeps = document.getElementById("spcreeps");
+            console.log(dict);
+            console.log(dict["meat_creep"] + " простих кріпів!")
+            spcreeps.innerHTML = dict["meat_creep"] + " простих кріпів!<br>";
+            spcreeps.innerHTML += dict["middle_creep"] + " середніх кріпів!<br>";
+            spcreeps.innerHTML += dict["middle_creep"] + " катапульт!<br>";
+
+            spskills = document.getElementById("spskills");
+            spskills.innerHTML = dict["tower_refresh_skill"] + " обновлень скілів!<br>";
+        }
+
+        function loadstat() {
+            showSlides();
+            $.ajax
+                ({
+                    type: "get",
+                    url: "https://localhorse.space/getcreepstat",
+                    success: function (html) {
+                        showstat(html);
+                    },
+                    error: function (html) {
+                        console.log("error");
+                        showstat({ "meat_creep": 22, "middle_creep": 19, "middle_ranged_creep": 10, "tower_refresh_skill": 15 });
+                    }
+                });
+        }
+
+        $(document).ready(loadstat);
+
+
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 4000); // Change image every 4 seconds
+        }
+
+
+
+    </script>
+
+
+</head>
+
+<div class="background" style="z-index: -10;">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<body>
+
+    <!-- Верхня панель навігації -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Pudganya Nelba</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Головна</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3109337526">Майстерня</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card opacity-card">
+                    <h1>P U D G A N Y A - N E L B A</h1>
+                    <p style="color: white;">Кастомна гра створена на платформі DOTA 2</p>
+                    <p style="color: white;">Ідеально працює при грі 1 на 1, але матчі з більшою кількістю гравців теж
+                        принесуть вам задоволення!</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card opacity-card">
+                    <h1>Наша статистика!</h1>
+                    <p style="color: white;">Заспавнені кріпи: </p>
+                    <p style="color: gray;" id="spcreeps">Завантаження...</p>
+                    <p style="color: white;">Використані унікальні здібності: </p>
+                    <p style="color: gray;" id="spskills">Завантаження...</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card opacity-card" style="text-align: center;">
+                <div class="slideshow-container" style="max-height: 400px;">
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 3</div>
+                        <img src="pudganyanelba1.png" style="max-height: 400px;">
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">2 / 3</div>
+                        <img src="pudganyanelba2.png" style="max-height: 400px">
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">3 / 3</div>
+                        <img src="pudganyanelba3.png" style="max-height: 400px">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="card opacity-card" style="text-align: center;">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div style="position: relative">
+                        <img src="middle_creep_bar_cuted.png" 
+                            style="height: 500px; max-width: 100%; object-fit: cover; border-radius: 2vmin;">
+                        
+                        <img src="middle_creep_bar_full.png" class="backimage" style="height: 500px; max-width: 100%; object-fit: cover; border-radius: 2vmin; position: absolute;top: 0;
+                        left: 0;
+                        object-fit: cover;">
+                    
+                    </div>
+                </div>
+                <div class="col-md-6" style="text-align: left;">
+                    <h1>СЕРЕДНІЙ БЛИЖНІЙ БОЄЦЬ</h1>
+                    <hr>
+                    <h3 style="color: white;"><b style="color: crimson;">ВАШ</b> експерт ближнього бою</h3>
+                    <h7 style="color: white;">Виконає всі завдання, які ви йому поставите <strike>(Окрім Курсової
+                            роботи)</strike></h7>
+                    <br>
+                    <h7 style="color: white;">Тільки свисни і він прибіжить, в швидкості він найкращий!</h7>
+                    <br>
+                    <h7 style="color: white;">Всього за <h7 style="color: gold;">50 копійок</h7> буде служити вам до <h7
+                            style="color: crimson;">КІНЦЯ СВОГО ЖИТТЯ</h7>
+                    </h7>
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="card opacity-card" style="text-align: center;">
+            <div class="row">
+
+                
+                <div class="col-md-6" style="text-align: left;">
+                    <h1>НАЙМЕНШИЙ ФІЗИЧНО АЛЕ НАЙСИЛЬНІШИЙ ДУХОМ БОЄЦЬ</h1>
+                    <hr>
+                    <h3 style="color: white;"><b style="color: crimson;">ВАШ</b> вірний розвідник</h3>
+                    <h7 style="color: white;">Бував всюди, бачить файно.
+                    <br>
+                    <h7 style="color: white;">Всього за <h7 style="color: gold;">20 копійок</h7> буде кидатись палками з <h7
+                            style="color: crimson;">СИХІВСЬКОГО ЛІСУ</h7> в ворогів
+                    </h7>
+
+                </div>
+                <div class="col-md-6">
+                    <div style="position: relative">
+                        <img src="meat_creep_bar_cuted.png" 
+                            style="height: 600px; max-width: 100%; object-fit: cover; border-radius: 2vmin;">
+                        
+                        <img src="meat_creep_bar_full.png" class="backimage" style="height: 600px; max-width: 100%; object-fit: cover; border-radius: 2vmin; position: absolute;top: 0; left: 0;
+                        left: 0;
+                        object-fit: cover;">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+    <br>
+    <br>
+
+    <footer>
+        <div class="team-name" style="font-size: 10px;">© Чорний, Сиротинський, Слюсаренко КН-407 - 2023</div>
+        <div class="divider"></div>
+    </footer>
+
+    <!-- Зміст сторінки тут -->
+
+    <!-- Підключення Bootstrap JS та Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+
+
+
+</html>
